@@ -1,0 +1,608 @@
+﻿Aquí tienes el código completo en un solo archivo HTML, listo para copiar y usar.
+
+He estructurado e integrado las secciones que me pediste de la siguiente manera:
+
+* **Nosotros:** He dejado el espacio listo con texto de relleno estructurado (títulos, párrafos, datos clave) para que solo tengas que pegar la información de tu Word cuando quieras.
+* **Servicios (con tabla tipo Excel):** He convertido la idea de tu Excel en una tabla de precios y planes premium muy visual dentro de la sección de servicios.
+* **Links a páginas random:** He añadido un submenú en el menú principal y enlaces en el pie de página que simulan links externos o páginas adicionales ("Políticas de Privacidad", "Blog Gatuno", etc.).
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michimiau - Cuidado Felino Profesional</title>
+    <style>
+        /* --- ESTILOS CSS GENERALES --- */
+        :root {
+            --primary: #2d3748;
+            --accent: #ff8a65;
+            --accent-hover: #e57373;
+            --bg-light: #fdfbf7;
+            --bg-dark: #1a202c;
+            --text-dark: #2d3748;
+            --text-muted: #718096;
+            --white: #ffffff;
+            --table-border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- MENÚ DE NAVEGACIÓN --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* --- SECCIÓN HERO --- */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));
+        }
+
+        /* --- SECCIÓN SECCIONES GENERALES --- */
+        .section-padding {
+            padding: 80px 20px;
+        }
+
+        .bg-white {
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* --- SECCIÓN NOSOTROS (ESPACIO PARA TU WORD) --- */
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 17px;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+        }
+
+        .about-highlights {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .highlight-item {
+            flex: 1;
+            min-width: 200px;
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .highlight-item h4 {
+            color: var(--accent);
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        /* --- SECCIÓN SERVICIOS --- */
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .service-card h3 {
+            font-size: 22px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        /* --- TABLA DE EXCEL (TARIFARIO) --- */
+        .excel-table-container {
+            max-width: 900px;
+            margin: 0 auto;
+            overflow-x: auto;
+            background: var(--white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .excel-table-title {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 15px;
+        }
+
+        th, td {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--table-border);
+        }
+
+        th {
+            background-color: #edf2f7;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background-color: #f7fafc;
+        }
+
+        .price-tag {
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        /* --- SECCIÓN CONTACTO --- */
+        .contact-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            margin-bottom: 25px;
+        }
+
+        .info-links {
+            list-style: none;
+        }
+
+        .info-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-links a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .info-links a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            flex: 1.2;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            background-color: var(--bg-light);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .contact-form .btn {
+            width: 100%;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* --- RESPONSIVIDAD --- */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            .contact-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">🐱 Michi<span>miau</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="https://example.com/blog" target="_blank" style="color: var(--text-muted);">Blog Random</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Bienvenido al paraíso de tu felino</h1>
+            <p>En <strong>Michimiau</strong> entendemos que tu gato no es solo una mascota, es parte fundamental de tu familia. Ofrecemos un ecosistema integral de cuidado, estilismo y bienestar premium adaptado al comportamiento y las necesidades exigentes de cada michi.</p>
+            <a href="#contacto" class="btn">Reserva una Cita</a>
+        </div>
+        <div class="hero-image">
+            <img src="michi_hero.png" alt="Imagen principal de Michimiau">
+        </div>
+    </section>
+
+    <section class="section-padding" id="nosotros">
+        <div class="about-container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="about-text">
+                <p style="margin-bottom: 15px;"><strong>[Espacio listo para tu Word]</strong> Somos una organización nacida de la pasión por el bienestar animal. Fundada en 2026, Michimiau rompe los esquemas tradicionales del cuidado de mascotas ofreciendo espacios 100% pensados para la psicología y tranquilidad de los gatos.</p>
+                <p>Nuestra misión es mitigar el estrés que los felinos sufren comúnmente en las estéticas convencionales gracias a técnicas de manejo amable y profesionales altamente capacitados en etología.</p>
+            </div>
+            <div class="about-highlights">
+                <div class="highlight-item">
+                    <h4>+500</h4>
+                    <p>Michis Felices</p>
+                </div>
+                <div class="highlight-item">
+                    <h4>100%</h4>
+                    <p>Especialistas Felinos</p>
+                </div>
+                <div class="highlight-item">
+                    <h4>Libre</h4>
+                    <p>De jaulas y estrés</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section section-padding bg-white" id="servicios">
+        <h2 class="section-title">Nuestros Servicios Premium</h2>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">✂️</div>
+                <h3>Estilismo & Spa</h3>
+                <p>Cortes de pelo especializados, baños secos relajantes y limpiezas auriculares diseñados exclusivamente para no alterar la tranquilidad de tu felino.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏨</div>
+                <h3>Hotel 5 Estrellas</h3>
+                <p>Habitaciones totalmente verticales, enriquecimiento ambiental y supervisión profesional continua para que se sienta como en casa.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🩺</div>
+                <h3>Consultoría del Bienestar</h3>
+                <p>Asesoramiento nutricional y etología clínica felina para resolver problemas de comportamiento y asegurar una vida sana.</p>
+            </div>
+        </div>
+
+        <div class="excel-table-container">
+            <div class="excel-table-title">📊 Matriz de Tarifas y Coberturas (Vista de Datos)</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código Servicio</th>
+                        <th>Descripción del Plan</th>
+                        <th>Duración Aprox.</th>
+                        <th>Precio Base</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>ESP-01</strong></td>
+                        <td>Spa Básico (Baño seco + Uñas)</td>
+                        <td>45 min</td>
+                        <td class="price-tag">$35.00</td>
+                        <td><span style="color: #2f855a; background: #c6f6d5; padding: 2px 8px; border-radius: 10px; font-size: 12px;">Disponible</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>HTL-05</strong></td>
+                        <td>Hotel Suite Vertical (Por noche)</td>
+                        <td>24 horas</td>
+                        <td class="price-tag">$50.00</td>
+                        <td><span style="color: #2f855a; background: #c6f6d5; padding: 2px 8px; border-radius: 10px; font-size: 12px;">Disponible</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ETOL-02</strong></td>
+                        <td>Consultoría de Comportamiento / Etología</td>
+                        <td>60 min</td>
+                        <td class="price-tag">$75.00</td>
+                        <td><span style="color: #c05621; background: #feebc8; padding: 2px 8px; border-radius: 10px; font-size: 12px;">Previa Cita</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>PREM-99</strong></td>
+                        <td>Plan Todo Incluido (Full Day Premium)</td>
+                        <td>8 horas</td>
+                        <td class="price-tag">$110.00</td>
+                        <td><span style="color: #2f855a; background: #c6f6d5; padding: 2px 8px; border-radius: 10px; font-size: 12px;">Disponible</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="section-padding" id="contacto">
+        <h2 class="section-title">Ponte en Contacto</h2>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Atención Inmediata</h3>
+                <p>Si tienes alguna consulta rápida, también puedes revisar nuestros accesos directos y recursos rápidos del ecosistema Michimiau:</p>
+                <ul class="info-links">
+                    <li>📍 <strong>Dirección:</strong> Av. Felina 123, Lima</li>
+                    <li>📞 <strong>Teléfono:</strong> +51 999 888 777</li>
+                    <li>🔗 <a href="https://google.com" target="_blank">Ver ubicación en Google Maps</a></li>
+                    <li>🔗 <a href="https://example.com/faqs" target="_blank">Preguntas Frecuentes (FAQs)</a></li>
+                    <li>🔗 <a href="https://example.com/terminos" target="_blank">Términos del Servicio</a></li>
+                </ul>
+            </div>
+
+            <div class="contact-form">
+                <form id="michiForm">
+                    <div class="form-group">
+                        <label for="nombre">Tu Nombre</label>
+                        <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo Electrónico</label>
+                        <input type="email" id="correo" placeholder="Ej. juan@correo.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje o Solicitud</label>
+                        <textarea id="mensaje" rows="4" placeholder="Cuéntanos sobre tu michi y el servicio que necesitas..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Michimiau S.A.C. Todos los derechos reservados. | Práctica Profesional</p>
+        <div class="footer-links">
+            <a href="https://example.com/politica" target="_blank">Política de Privacidad</a> | 
+            <a href="https://example.com/cookies" target="_blank">Cookies</a> | 
+            <a href="https://example.com/soporte" target="_blank">Soporte Técnico</a>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('michiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const correo = document.getElementById('correo').value;
+            
+            if(nombre && correo) {
+                alert(`¡Gracias por comunicarte, ${nombre}! Hemos recibido tu solicitud. Nos pondremos en contacto contigo a tu correo (${correo}) muy pronto.`);
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>
+
+```

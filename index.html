@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michimiau - Cuidado Felino Profesional</title>
+    <style>
+        :root {
+            --primary: #2d3748; --accent: #ff8a65; --accent-hover: #e57373;
+            --bg-light: #fdfbf7; --bg-dark: #1a202c; --text-dark: #2d3748; --text-muted: #718096; --white: #ffffff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+        
+        /* --- NAVEGACIÓN --- */
+        header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--primary); text-decoration: none; }
+        .logo span { color: var(--accent); }
+        nav ul { display: flex; list-style: none; gap: 20px; }
+        nav a { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--accent); }
+
+        /* --- HERO --- */
+        .hero { max-width: 1200px; margin: 0 auto; padding: 60px 20px; display: flex; align-items: center; gap: 40px; }
+        .hero-content { flex: 1; }
+        .hero-content h1 { font-size: 40px; color: var(--primary); margin-bottom: 15px; line-height: 1.2; }
+        .hero-content p { font-size: 16px; color: var(--text-muted); margin-bottom: 25px; }
+        .btn { display: inline-block; background: var(--accent); color: var(--white); padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; transition: 0.3s; border: none; cursor: pointer; }
+        .btn:hover { background: var(--accent-hover); transform: translateY(-2px); }
+        .hero-image { flex: 1; text-align: center; }
+        .hero-image img { width: 100%; max-width: 400px; height: auto; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08)); }
+
+        /* --- SECCIONES Y COMPONENTES --- */
+        .section { background: var(--white); padding: 60px 20px; text-align: center; }
+        .section-title { font-size: 30px; color: var(--primary); margin-bottom: 40px; }
+        .grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: var(--bg-light); padding: 30px 20px; border-radius: 12px; border: 1px solid rgba(0,0,0,0.03); transition: 0.3s; text-decoration: none; color: inherit; display: block; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .icon { font-size: 35px; margin-bottom: 15px; }
+        .card h3 { font-size: 20px; color: var(--primary); margin-bottom: 10px; }
+        .card p { color: var(--text-muted); font-size: 14px; }
+
+        /* --- DRIVE & LINKS SECCIÓN --- */
+        .drive-section { background: var(--bg-light); padding: 60px 20px; text-align: center; }
+        .btn-drive { background: #4285f4; margin-top: 15px; }
+        .btn-drive:hover { background: #357ae8; }
+
+        /* --- FORMULARIO --- */
+        .contact-form { max-width: 500px; margin: 0 auto; background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: left; }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e0; border-radius: 6px; background: var(--bg-light); }
+        .contact-form .btn { width: 100%; }
+        footer { background: var(--bg-dark); color: var(--white); text-align: center; padding: 20px; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding: 30px 20px; }
+            .nav-container { flex-direction: column; gap: 10px; }
+            .hero-content h1 { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">🐱 Michi<span>miau</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="https://docs.google.com/document/d/1BKbAH0JwlCmwbNR3m_np1cjOjtPb1XRM0JNkVxG1ZP0/edit?usp=sharing" target="_blank">Nosotros</a></li>
+                    <li><a href="https://docs.google.com/spreadsheets/d/1jPZ0fulL-WFSiw2LqXDPNtToRjK9EP2WEBV5Vo3HNx0/edit?usp=sharing" target="_blank">Servicios</a></li>
+                    <li><a href="https://www.youtube.com/@soymichimiau" target="_blank">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Bienvenido al paraíso de tu felino</h1>
+            <p>En <strong>Michimiau</strong> ofrecemos un ecosistema integral de cuidado, estilismo y bienestar premium adaptado a las necesidades de cada michi.</p>
+            <a href="#contacto-directo" class="btn">Reserva una Cita</a>
+        </div>
+        <div class="hero-image">
+            <img src="michi_hero.png" alt="Michimiau">
+        </div>
+    </section>
+
+    <section class="drive-section">
+        <h2 class="section-title">Información Importante (Drive & Links)</h2>
+        <div class="grid">
+            <a href="https://docs.google.com/document/d/1BKbAH0JwlCmwbNR3m_np1cjOjtPb1XRM0JNkVxG1ZP0/edit?usp=sharing" target="_blank" class="card">
+                <div class="icon">📝</div>
+                <h3>Sobre Nosotros</h3>
+                <p>Haz clic para revisar nuestro documento oficial en Word con nuestra historia y valores.</p>
+                <span class="btn btn-drive">Ver Word</span>
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1jPZ0fulL-WFSiw2LqXDPNtToRjK9EP2WEBV5Vo3HNx0/edit?usp=sharing" target="_blank" class="card">
+                <div class="icon">📊</div>
+                <h3>Tarifas y Servicios</h3>
+                <p>Haz clic para ver la lista de precios detallada y actualizada en nuestro Excel.</p>
+                <span class="btn btn-drive">Ver Excel</span>
+            </a>
+            <a href="https://www.youtube.com/@soymichimiau" target="_blank" class="card">
+                <div class="icon">🌐</div>
+                <h3>Canal de YouTube</h3>
+                <p>Visita nuestra comunidad oficial de Michimiau en YouTube haciendo clic aquí.</p>
+                <span class="btn">Visitar Canal</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="section" id="contacto-directo">
+        <h2 class="section-title">Envíanos un Mensaje Directo</h2>
+        <div class="contact-form">
+            <form id="michiForm">
+                <div class="form-group">
+                    <label for="nombre">Tu Nombre</label>
+                    <input type="text" id="nombre" placeholder="Ej. Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <input type="email" id="correo" placeholder="Ej. juan@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" rows="3" placeholder="¿Qué necesita tu michi?..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Michimiau S.A.C. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.getElementById('michiForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            alert(
